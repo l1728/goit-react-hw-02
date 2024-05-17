@@ -1,0 +1,11 @@
+.allFeedback {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.onlyFeedback {
+  color: #eaecf0;
+  text-align: start;
+  font-size: 30px;
+}
