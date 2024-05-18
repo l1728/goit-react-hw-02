@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styles from '../Feedback/Feedback.module.css';
 
 const Feedback = ({ feedback }) => {
@@ -8,5 +9,13 @@ const Feedback = ({ feedback }) => {
       <p className={styles.onlyFeedback}>Bad: {feedback.bad}</p>
     </div>
   );
+};
+
+Feedback.propTypes = {
+  feedback: PropTypes.shape({
+    good: PropTypes.number.isRequired,
+    neutral: PropTypes.number.isRequired,
+    bad: PropTypes.number.isRequired,
+  }).isRequired,
 };
 export default Feedback;

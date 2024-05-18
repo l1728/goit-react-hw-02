@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import styles from '../Options/Options.module.css';
 
-const Options = ({ realFeedback }) => {
+const Options = ({ realFeedback, totalFeedback, resetFeedback }) => {
   return (
     <div className={styles.buttons}>
       <button className={styles.oneButton} onClick={() => realFeedback('good')}>
@@ -15,7 +16,18 @@ const Options = ({ realFeedback }) => {
       <button className={styles.oneButton} onClick={() => realFeedback('bad')}>
         Bad
       </button>
+      {totalFeedback > 0 && (
+        <button className={styles.oneButton} onClick={resetFeedback}>
+          Reset
+        </button>
+      )}
     </div>
   );
+};
+
+Options.propTypes = {
+  realFeedback: PropTypes.func.isRequired,
+  totalFeedback: PropTypes.number.isRequired,
+  resetFeedback: PropTypes.func.isRequired,
 };
 export default Options;

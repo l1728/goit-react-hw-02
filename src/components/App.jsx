@@ -41,12 +41,24 @@ const App = () => {
     }));
   };
 
+  const resetFeedback = () => {
+    setFeedback({
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    });
+  };
+
   // Обчислюємо загальну кількість відгуків
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
   return (
     <>
       <Description />
-      <Options realFeedback={updateFeedback} />
+      <Options
+        realFeedback={updateFeedback}
+        totalFeedback={totalFeedback}
+        resetFeedback={resetFeedback}
+      />
       {totalFeedback > 0 ? (
         <Feedback feedback={feedback} />
       ) : (
