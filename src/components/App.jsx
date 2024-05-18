@@ -6,11 +6,12 @@ import { useEffect, useState } from 'react';
 import Notification from './Notification/Notification';
 
 const App = () => {
-  // Використовуємо хук useState для оголошення стану feedback з початковими значеннями
-  const [feedback, setFeedback] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
+  // Ініціалізація стану з локального сховища або нулями
+  const [feedback, setFeedback] = useState(() => {
+    const savedFeedback = localStorage.getItem('feedback');
+    return savedFeedback
+      ? JSON.parse(savedFeedback)
+      : { good: 0, neutral: 0, bad: 0 };
   });
 
   // Використовуємо хук useEffect для завантаження збереженого стану з localStorage при першому рендері
@@ -31,28 +32,28 @@ const App = () => {
     // Масив залежностей з feedback означає, що цей ефект виконається кожного разу при зміні стану feedback
   }, [feedback]);
 
-  // Функція updateFeedback приймає тип фідбеку та оновлює відповідне значення в стані feedback
+  // Оновлення стану та збереження в локальне сховище
   const updateFeedback = feedbackType => {
-    setFeedback(prevFeedback => ({
-      // Копіюємо попередній стан
-      ...prevFeedback,
-      // Збільшуємо значення відповідного типу фідбеку на 1
-      [feedbackType]: prevFeedback[feedbackType] + 1,
-    }));
-  };
-
-  const resetFeedback = () => {
-    setFeedback({
-      good: 0,
-      neutral: 0,
-      bad: 0,
+    setFeedback(prevFeedback => {
+      const newFeedback = {
+        ...prevFeedback,
+        [feedbackType]: prevFeedback[feedbackType] + 1,
+      };
+      localStorage.setItem('feedback', JSON.stringify(newFeedback));
+      return newFeedback;
     });
   };
 
-  // Обчислюємо загальну кількість відгуків
+  // Скидання відгуків та очищення локального сховища
+  const resetFeedback = () => {
+    const resetFeedback = { good: 0, neutral: 0, bad: 0 };
+    setFeedback(resetFeedback);
+    localStorage.removeItem('feedback');
+  };
+
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
   const positiveFeedbackPercentage = totalFeedback
-    ? Math.round((feedback.good / totalFeedback) * 100)
+    ? Math.round(((feedback.good + feedback.neutral) / totalFeedback) * 100)
     : 0;
   return (
     <>

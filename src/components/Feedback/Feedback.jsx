@@ -9,7 +9,7 @@ const Feedback = ({ feedback, totalFeedback, positiveFeedbackPercentage }) => {
       <p className={styles.onlyFeedback}>Bad: {feedback.bad}</p>
       <p className={styles.onlyFeedback}>Total: {totalFeedback}</p>
       <p className={styles.onlyFeedback}>
-        Positive: {positiveFeedbackPercentage}
+        Positive: {positiveFeedbackPercentage}%
       </p>
     </div>
   );
