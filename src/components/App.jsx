@@ -51,6 +51,9 @@ const App = () => {
 
   // Обчислюємо загальну кількість відгуків
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
+  const positiveFeedbackPercentage = totalFeedback
+    ? Math.round((feedback.good / totalFeedback) * 100)
+    : 0;
   return (
     <>
       <Description />
@@ -60,7 +63,11 @@ const App = () => {
         resetFeedback={resetFeedback}
       />
       {totalFeedback > 0 ? (
-        <Feedback feedback={feedback} />
+        <Feedback
+          feedback={feedback}
+          totalFeedback={totalFeedback}
+          positiveFeedbackPercentage={positiveFeedbackPercentage}
+        />
       ) : (
         <Notification message="No feedback yet" />
       )}
