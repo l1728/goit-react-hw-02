@@ -1,0 +1,9 @@
+.message {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.textMessage {
+  font-size: 30px;
+  color: #eaecf0;
+}
