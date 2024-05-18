@@ -4,16 +4,22 @@ import styles from '../Options/Options.module.css';
 const Options = ({ realFeedback, totalFeedback, resetFeedback }) => {
   return (
     <div className={styles.buttons}>
-      <button className={styles.oneButton} onClick={() => realFeedback('good')}>
+      <button
+        className={`${styles.oneButton} ${styles.goodButton}`}
+        onClick={() => realFeedback('good')}
+      >
         Good
       </button>
       <button
-        className={styles.oneButton}
+        className={`${styles.oneButton} ${styles.neutralButton}`}
         onClick={() => realFeedback('neutral')}
       >
         Neutral
       </button>
-      <button className={styles.oneButton} onClick={() => realFeedback('bad')}>
+      <button
+        className={`${styles.oneButton} ${styles.badButton}`}
+        onClick={() => realFeedback('bad')}
+      >
         Bad
       </button>
       {totalFeedback > 0 && (

@@ -2,10 +2,20 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  gap: 20px;
 }
 
 .onlyFeedback {
   color: #eaecf0;
   text-align: start;
   font-size: 30px;
+}
+.goodFeedback {
+  color: #f1a9a9;
+}
+.neutralFeedback {
+  color: #47ebb4;
+}
+.badFeedback {
+  color: #4faaf0;
 }

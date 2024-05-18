@@ -14,17 +14,6 @@ const App = () => {
       : { good: 0, neutral: 0, bad: 0 };
   });
 
-  // Використовуємо хук useEffect для завантаження збереженого стану з localStorage при першому рендері
-  useEffect(() => {
-    // Отримуємо збережений стан з localStorage
-    const savedFeedback = localStorage.getItem('feedback');
-    if (savedFeedback) {
-      // Якщо є збережений стан, оновлюємо стан компоненту
-      setFeedback(JSON.parse(savedFeedback));
-    }
-    // Порожній масив залежностей означає, що цей ефект виконається лише один раз при монтуванні компонента
-  }, []);
-
   // Використовуємо хук useEffect для збереження стану feedback у localStorage при кожній його зміні
   useEffect(() => {
     // Зберігаємо стан у localStorage у вигляді JSON
@@ -34,20 +23,15 @@ const App = () => {
 
   // Оновлення стану та збереження в локальне сховище
   const updateFeedback = feedbackType => {
-    setFeedback(prevFeedback => {
-      const newFeedback = {
-        ...prevFeedback,
-        [feedbackType]: prevFeedback[feedbackType] + 1,
-      };
-      localStorage.setItem('feedback', JSON.stringify(newFeedback));
-      return newFeedback;
-    });
+    setFeedback(prevFeedback => ({
+      ...prevFeedback,
+      [feedbackType]: prevFeedback[feedbackType] + 1,
+    }));
   };
 
   // Скидання відгуків та очищення локального сховища
   const resetFeedback = () => {
-    const resetFeedback = { good: 0, neutral: 0, bad: 0 };
-    setFeedback(resetFeedback);
+    setFeedback({ good: 0, neutral: 0, bad: 0 });
     localStorage.removeItem('feedback');
   };
 

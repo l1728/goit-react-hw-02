@@ -5,5 +5,8 @@
 
 .textMessage {
   font-size: 30px;
-  color: #eaecf0;
+  color: #0c2b21;
+  background-color: #eaecf0;
+  padding: 0 10px;
+  border-radius: 8px;
 }

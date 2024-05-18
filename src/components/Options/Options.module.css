@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   gap: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 .oneButton {
@@ -13,4 +13,16 @@
   font-size: 30px;
   border-radius: 8px;
   border: none;
+  padding: 0 10px;
+}
+.goodButton {
+  background-color: #f1a9a9;
+}
+
+.neutralButton {
+  background-color: #47ebb4;
+}
+
+.badButton {
+  background-color: #4faaf0;
 }
