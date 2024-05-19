@@ -29,7 +29,7 @@ const App = () => {
     }));
   };
 
-  // Скидання відгуків та очищення локального сховища
+  // Очищення локального сховища
   const resetFeedback = () => {
     const resetState = { good: 0, neutral: 0, bad: 0 };
     setFeedback(resetState);
