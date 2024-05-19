@@ -31,13 +31,14 @@ const App = () => {
 
   // Скидання відгуків та очищення локального сховища
   const resetFeedback = () => {
-    setFeedback({ good: 0, neutral: 0, bad: 0 });
-    localStorage.removeItem('feedback');
+    const resetState = { good: 0, neutral: 0, bad: 0 };
+    setFeedback(resetState);
+    localStorage.setItem('feedback', JSON.stringify(resetState));
   };
 
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
   const positiveFeedbackPercentage = totalFeedback
-    ? Math.round(((feedback.good + feedback.neutral) / totalFeedback) * 100)
+    ? Math.round((feedback.good / totalFeedback) * 100)
     : 0;
   return (
     <>
